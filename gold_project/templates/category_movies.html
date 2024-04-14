@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <div class="container">
+    <!-- Button to toggle category selection form -->
+    <button class="btn btn-secondary mb-3" id="toggleCategories">Categories</button>
+
+    <!-- Category selection form (hidden by default) -->
+    <form action="{% url 'gold_app:category_movies' category_id=category.id %}" method="GET" id="categoryForm" style="display: none;">
+      <div class="form-group">
+        <label for="categorySelect">Select Category:</label>
+        <select class="form-control" id="categorySelect" name="category_id">
+          {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    {% if movies %}
+      <h2>Movies</h2>
+      <div class="row">
+        {% for movie in movies %}
+          <div class="col-md-3">
+            <div class="card" style="margin: 10px;">
+              <img class="card-img-top" src="{{ movie.image.url }}" alt="{{ movie.name }}" style="height:250px;object-fit: cover; max-width: 100%;">
+              <div class="card-body">
+                <h5 class="card-title">{{ movie.name }}</h5>
+                <p class="card-text">{{ movie.description }}</p>
+                <a href="{% url 'gold_app:movie' movie_id=movie.id %}" class="btn btn-primary">Details</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- JavaScript to toggle category selection form -->
+  <script>
+    $(document).ready(function() {
+      $('#toggleCategories').click(function() {
+        $('#categoryForm').toggle();
+      });
+    });
+  </script>
+{% endblock %}

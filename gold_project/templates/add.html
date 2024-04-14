@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block body %}
+<style>
+    input[type="submit"] {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}  {# This will render all form fields as paragraphs #}
+    <input type="submit" value="Submit"><br>
+</form>
+{% endblock %}

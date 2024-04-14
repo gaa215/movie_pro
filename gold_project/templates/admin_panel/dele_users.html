@@ -1,0 +1,16 @@
+{% extends 'admin_base.html' %}
+{% block title %}Delete Users{% endblock %}
+
+{% block content %}
+<h1>Delete Users</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="user_id">Select User to Delete:</label>
+    <select name="user_id" id="user_id">
+        {% for user in users %}
+        <option value="{{ user.id }}">{{ user.username }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-danger">Delete User</button>
+</form>
+{% endblock %}

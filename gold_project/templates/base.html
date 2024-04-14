@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+<!-- Image and text -->
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
+      Movie Store
+  </a>
+
+  <!-- Category Button -->
+  <div class="ml-auto">
+    <button class="btn btn-secondary mr-2" onclick="toggleCategories()">Categories</button>
+  </div>
+
+  <!-- Add Movie Button -->
+  <button class="btn btn-success mr-2" onclick="location.href='{% url 'gold_app:add_movie' %}'">Add Movie</button>
+
+  <!-- Search Bar -->
+  <form class="form-inline" action="/search" method="GET">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+<a href="{% url 'edit_profile' %}" class="btn btn-primary mr-2">Edit Profile</a>
+<a href="{% url 'delete_profile' %}" class="btn btn-danger">Delete Profile</a>
+
+<a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+
+<!-- Category List (Initially Hidden) -->
+<div id="categoryList" style="display: none;">
+  <ul class="list-group">
+    {% for category in categories %}
+      <li class="list-group-item">
+        <a href="{% url 'gold_app:category_movies' category_id=category.id %}">{{ category.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<!-- JavaScript to Toggle Category List Visibility -->
+<script>
+  function toggleCategories() {
+    var categoryList = document.getElementById('categoryList');
+    if (categoryList.style.display === 'none') {
+      categoryList.style.display = 'block';
+    } else {
+      categoryList.style.display = 'none';
+    }
+  }
+</script>
+
+
+{% block body %}
+{% endblock %}
+</body>
+</html>

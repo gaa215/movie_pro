@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <h2>Search Results for "{{ query }}"</h2>
+    <div class="row">
+        {% if movies %}
+            {% for movie in movies %}
+                <div class="col-md-3">
+                    <div class="card" style="margin: 10px;">
+                        <img class="card-img-top" src="{{ movie.image.url }}" alt="{{ movie.name }}" style="height:250px;object-fit: cover; max-width: 100%;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ movie.name }}</h5>
+                            <p class="card-text">{{ movie.actors }}</p>
+                            <p class="card-text">{{ movie.category }}</p>
+                            <a href="{% url 'gold_app:movie' movie.id %}" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No movies found for "{{ query }}".</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

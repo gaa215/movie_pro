@@ -1,0 +1,21 @@
+<!-- accounts/templates/accounts/delete_profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Profile</title>
+    <!-- Add any necessary CSS or other head elements here -->
+</head>
+<body>
+
+<h2>Delete Profile</h2>
+
+<p>Are you sure you want to delete your profile?</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Confirm Delete</button>
+</form>
+
+</body>
+</html>

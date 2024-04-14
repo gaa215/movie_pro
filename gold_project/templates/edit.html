@@ -1,0 +1,23 @@
+<style>
+    body {
+        font-family: 'times new roman', sans-serif;
+        background-color: pink;
+        text-align:left;
+    }
+
+
+    input[type="submit"] {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+<input type="submit"><br>
+</form>

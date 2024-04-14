@@ -1,0 +1,24 @@
+{% extends 'admin_base.html' %}
+{% block title %}View Users{% endblock %}
+
+{% block content %}
+<h1>View Users</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <!-- Add more user attributes as needed -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <!-- Display more user attributes as needed -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
